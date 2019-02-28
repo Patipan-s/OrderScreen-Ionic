@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>
+      Shopping
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <div>
+    <ion-segment [(ngModel)]="FoodType">
+      <ion-segment-button *ngFor="let item of productsTitle" value="{{item}}">
+        {{item}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="FoodType">
+
+    <ion-list *ngSwitchCase="'MainCourse'">
+      <ion-item *ngFor="let product of productsLists[0]">
+        <p text-left>{{ product.name }} - {{ product.cost }} THB</p>
+        <button ion-button item-right (click)="addProduct(product)">Add</button>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'Snack'">
+      <ion-item *ngFor="let product of productsLists[1]">
+        <p>{{ product.name }} - {{ product.cost }} THB</p>
+        <button ion-button item-right (click)="addProduct(product)">Add</button>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'Drink'">
+      <ion-item *ngFor="let product of productsLists[2]">
+        <p>{{ product.name }} - {{ product.cost }} THB</p>
+        <button ion-button item-right (click)="addProduct(product)">Add</button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer style="padding:0 8px">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button color="primary" outline style="pointer-events: none;">
+            <ion-icon name="cart"></ion-icon>
+        </button>
+        <ion-badge >{{ badge }}</ion-badge>
+      </ion-col>
+      <ion-col col-8>
+        <button ion-button block color="primary" (click)="nextPage()">Next</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+
+
+
+
